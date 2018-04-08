@@ -26,9 +26,9 @@
   torus: add a torus to the edge matrix - 
   takes 5 arguemnts (cx, cy, cz, r1, r2)
   box: add a rectangular prism to the edge matrix - 
-  takes 6 arguemnts (x, y, z, width, height, depth)    
+  takes 6 arguemnts (x, y, z, width, height, depth)	    
   circle: add a circle to the edge matrix - 
-  takes 4 arguments (cx, cy, cz, r)    
+  takes 4 arguments (cx, cy, cz, r)	    
   hermite: add a hermite curve to the edge matrix -
   takes 8 arguments (x0, y0, x1, y1, rx0, ry0, rx1, ry1)
   bezier: add a bezier curve to the edge matrix -
@@ -146,10 +146,10 @@ void parse_file ( char * filename,
              xvals, yvals, xvals+1, yvals+1,
              xvals+2, yvals+2, xvals+3, yvals+3);
       /* printf("%lf %lf %lf %lf %lf %lf %lf %lf\n", */
-      /*      xvals[0], yvals[0], */
-      /*      xvals[1], yvals[1], */
-      /*      xvals[2], yvals[2], */
-      /*      xvals[3], yvals[3]); */
+      /* 	     xvals[0], yvals[0], */
+      /* 	     xvals[1], yvals[1], */
+      /* 	     xvals[2], yvals[2], */
+      /* 	     xvals[3], yvals[3]); */
       
       //printf("%d\n", type);
       add_curve( edges, xvals[0], yvals[0], xvals[1], yvals[1],
@@ -176,7 +176,7 @@ void parse_file ( char * filename,
       sscanf(line, "%lf %lf %lf",
              xvals, yvals, zvals);
       /* printf("%lf %lf %lf\n", */
-      /* xvals[0], yvals[0], zvals[0]); */ 
+      /* 	xvals[0], yvals[0], zvals[0]); */ 
       tmp = make_scale( xvals[0], yvals[0], zvals[0]);
       matrix_mult(tmp, transform);
     }//end scale
@@ -187,7 +187,7 @@ void parse_file ( char * filename,
       sscanf(line, "%lf %lf %lf",
              xvals, yvals, zvals);
       /* printf("%lf %lf %lf\n", */
-      /* xvals[0], yvals[0], zvals[0]); */ 
+      /* 	xvals[0], yvals[0], zvals[0]); */ 
       tmp = make_translate( xvals[0], yvals[0], zvals[0]);
       matrix_mult(tmp, transform);
     }//end translate
@@ -198,7 +198,7 @@ void parse_file ( char * filename,
       sscanf(line, "%c %lf",
              &axis, &theta);      
       /* printf("%c %lf\n", */
-      /* axis, theta); */
+      /* 	axis, theta); */
       theta = theta * (M_PI / 180);
       if ( axis == 'x' )
         tmp = make_rotX( theta );
@@ -228,7 +228,7 @@ void parse_file ( char * filename,
     else if ( strncmp(line, "display", strlen(line)) == 0 ) {
       //printf("DISPLAY\t%s", line);
       clear_screen(s);
-      draw_lines(edges, s, c);
+      draw_polygons(edges, s, c);
       display( s );
     }//end display
 
@@ -237,9 +237,10 @@ void parse_file ( char * filename,
       *strchr(line, '\n') = 0;
       //printf("SAVE\t%s\n", line);
       clear_screen(s);
-      draw_lines(edges, s, c);
+      draw_polygons(edges, s, c);
       save_extension(s, line);
     }//end save
     
   }
 }
+  

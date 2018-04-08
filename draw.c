@@ -45,7 +45,7 @@ void add_polygon( struct matrix *polygons,
   ====================*/
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
   int i;
-  double ax,ay,bx,by, x0, x1,x2, y0,y1,y2
+  double ax,ay,bx,by, x0, x1,x2, y0,y1,y2;
   if ( polygons->lastcol > 3 ) {
     for (i = 0; i < polygons->lastcol; i += 3) {
       ax = x1-x0;
@@ -62,7 +62,7 @@ void draw_polygons( struct matrix *polygons, screen s, color c ) {
       y1 = polygons->m[1][i+1];
       y2 = polygons->m[1][i+2];
 
-      if( az*by - ay*bx > 0){
+      if( ax*by - ay*bx > 0){
 	draw_line(x0, y0, x1, y1, s, c);
 	draw_line(x1, y1, x2, y2, s, c);
 	draw_line(x2, y2, x0, y0, s, c);
