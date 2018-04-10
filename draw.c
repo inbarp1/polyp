@@ -45,28 +45,18 @@ void add_polygon( struct matrix *polygons,
   ====================*/
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
   int i;
-  double ax,ay,bx,by, x0, x1,x2, y0,y1,y2;
+  int  ax,ay,bx,by;
   if ( polygons->lastcol > 3 ) {
     for (i = 0; i < polygons->lastcol; i += 3) {
-      ax = x1-x0;
-      bx = x2-x0;
-    
-      ay = y1-y0;
-      by = y2-y0;
-
-      x0 = polygons->m[0][i];
-      x1 = polygons->m[0][i+1];
-      x2 = polygons->m[0][i+2];
-      
-      y0 = polygons->m[1][i];
-      y1 = polygons->m[1][i+1];
-      y2 = polygons->m[1][i+2];
-
-      if( ax*by - ay*bx > 0){
-	draw_line(x0, y0, x1, y1, s, c);
-	draw_line(x1, y1, x2, y2, s, c);
-	draw_line(x2, y2, x0, y0, s, c);
-      }
+     ax = polygons->m[0][i+2]-polygons->m[0][i];
+     bx = polygons->m[0][i+1]-polygons->m[0][i];
+     ay = polygons->m[1][i+2]-polygons->m[1][i];
+     by = polygons->m[1][i+1]-polygons->m[1][i];
+     if(ax*by - ay*bx > 0){
+       draw_line(polygons->m[0][i],polygons->m[1][i],polygons->m[0][i+1],polygons->m[1][i+1],s,c);
+       draw_line(polygons->m[0][i+2],polygons->m[1][i+2],polygons->m[0][i],polygons->m[1][i],s,c);
+       draw_line(polygons->m[0][i+1],polygons->m[1][i+1],polygons->m[0][i+2],polygons->m[1][i+2],s,c);
+     }
     }
   }
   else{
