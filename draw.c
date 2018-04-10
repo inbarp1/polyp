@@ -45,13 +45,13 @@ void add_polygon( struct matrix *polygons,
   ====================*/
 void draw_polygons( struct matrix *polygons, screen s, color c ) {
   int i;
-  int  ax,ay,bx,by;
+  double  ax,ay,bx,by;
   if ( polygons->lastcol > 3 ) {
     for (i = 0; i < polygons->lastcol; i += 3) {
-     ax = polygons->m[0][i+2]-polygons->m[0][i];
-     bx = polygons->m[0][i+1]-polygons->m[0][i];
-     ay = polygons->m[1][i+2]-polygons->m[1][i];
-     by = polygons->m[1][i+1]-polygons->m[1][i];
+      ax = polygons->m[0][i + 1] - polygons->m[0][i];
+      bx = polygons->m[0][i + 2] - polygons->m[0][i];
+      ay = polygons->m[1][i + 1] - polygons->m[1][i];
+      by = polygons->m[1][i + 2] - polygons->m[1][i];
      if(ax*by - ay*bx > 0){
        draw_line(polygons->m[0][i],polygons->m[1][i],polygons->m[0][i+1],polygons->m[1][i+1],s,c);
        draw_line(polygons->m[0][i+2],polygons->m[1][i+2],polygons->m[0][i],polygons->m[1][i],s,c);
