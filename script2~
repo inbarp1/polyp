@@ -1,0 +1,26 @@
+torus
+0 0 0 20 120
+ident
+rotate
+x 23
+rotate
+y 18
+rotate
+z 12
+move
+100 90 0
+apply
+torus
+0 0 0 20 120
+ident
+rotate
+x -5
+rotate
+y -5
+rotate
+z -5
+move
+-50 100 0
+apply
+torus
+0 0 0 10 150
